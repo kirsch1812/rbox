@@ -1,9 +1,13 @@
-# ----- system/dir/file -----
+# ----- system -----
 
 # get current time
 get_time <- function() { # get current time, formatted for mkdir use
 	return(format(Sys.time(), "%y%m%d_%H%M%S"))
 }
+
+
+
+# ----- dir/file handling -----
 
 # save df to tsv
 save_df_to_tsv <- function (data, file) {
@@ -28,11 +32,27 @@ mkpath <- function (path, mksubdir=0) {
 	return(path)
 }
 
+
+
+# ----- text processing -----
+
 # quick string match
 string_contains <- function (string, pattern) { # tag, input string; pattern, for search
 	if (is.na(str_match(string,pattern))==T ) { # no match
 		return (FALSE)
 	} else {
 		return (TRUE)
+	}
+}
+
+
+# ----- math formular -----
+
+# calc relative difference
+calcRelDiff <- function (a,b) {
+	if (is.na(a) | is.na(b) ) {
+		return (-100) # so no need to worry null/na/etc when plotting
+	} else {
+		return ( ( (a-b)/(a+b) )*2 )
 	}
 }

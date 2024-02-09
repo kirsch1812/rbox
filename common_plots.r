@@ -31,6 +31,20 @@ mk_lv_names <- function (breaks) {
 	return (breaknames)
 }
 
+# input a vector of full axis names, e.g. 0,0.1,0.2...1, and divide the axis to 4 pars , so only show 5 labels as axis ticks
+divide_axis_names_to_4 <- function (bin_names) {
+	# bin_names = ordered bin names from left to right on x
+	binsize = length(bin_names)
+	return ( bin_names[c(
+		1, # 1st
+		floor(0.25*binsize), # 1/4 point
+		floor(median(1:binsize)), # 1/2 point, middle point
+		floor(0.75*binsize), # 3/4 point
+		binsize # last
+		)
+	]
+	)
+}
 
 
 # convert data table ready for histogram, divide into bins and add conut value
